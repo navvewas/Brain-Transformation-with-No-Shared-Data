@@ -16,7 +16,7 @@
 * seaborn 0.9.0
 
 ## Hardware Requirements
-These experiments were conducted on Quadro RTX 8000 (49GB). The code can run on any GPU with at least 42GB and CUDA
+These experiments were conducted on Quadro RTX 8000 (48GB). The code can run on any GPU with at least 42GB and CUDA
 compatibility >=7.0.
 Additionally, enough RAM to support in-memory operations is required (estimated 50G).
 
