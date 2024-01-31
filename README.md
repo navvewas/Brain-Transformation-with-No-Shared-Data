@@ -73,13 +73,6 @@ python train_encoder.py 0 4 0 1 1 0 300 0
 Once done, the weigths of the trained transforamtion can be found at the 'data/Transformations' folder.
 
 
-### Datasets
-- This code borrows from [Perceptual Similarity Metric](https://github.com/richzhang/PerceptualSimilarity).
-- The original datasets behind the released data derivatives are ([fMRI on ImageNet](https://openneuro.org/datasets/ds001246/versions/1.0.1), and [ILSVRC](https://image-net.org/challenges/LSVRC/index.php)).
-
-## How to train a model
-Explanation
-
 
 ##
 ### Acknowledgments
