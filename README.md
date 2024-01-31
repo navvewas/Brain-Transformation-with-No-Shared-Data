@@ -25,52 +25,72 @@ Run the following commands in **bash** (other shells requires some modification 
 ```bash
 # download the code
 git clone https://github.com/navvewas/Brain-Transformation-with-No-Shared-Data.git
-cd ssReconstnClass
-# download the data (currently a demo version of the data)
-wget https://dl.dropboxusercontent.com/s/ttx8q0m8mmaz4id/data.tar.gz
-# extract the data
-tar -xvf data.tar.gz
+
+# download the data for the demo
+cd data/Processed_data/NSD
+wget aaaaa
+tar -xvf NSD.tar.gz
+cd ..
+cd GOD
+wget aaaaa
+tar -xvf GOD.tar.gz
+
+# download trained models for the demo
+cd ..
+cd ..
+cd NSD_encoders
+wget aaaaa
+tar -xvf NSD_encoders.tar.gz
+
+cd ..
+cd GOD_encoders
+wget aaaaa
+tar -xvf GOD_encoders.tar.gz
 
 # install conda env - assumes conda is already installed
 conda create -c pytorch -c defaults -c conda-forge -n Brain2Brain --file env.yml
 ```
 Depending on your internet connection, this may take about 30 minutes.
 
+
+
 ## Demo - Transforamtion between datasets
-This Demo will produce results on transforamtion between subject 1 from the NSD dataset to subject 4 from the GOD dataset.
+This Demo will train transforamtion between subject 1 from the NSD dataset to subject 4 from the GOD dataset.
  To run the demo, run the following commands in **bash** (other shells requires some modification to the following scripts):
 ```bash
 # go to the project directory
 cd <PROJECT_DIR>
 # activate conda environment
-conda activate bvsr
-# resolve some CXXABI issues that may arise
-export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
-# run code
-fMRIonImageNet/Reconstruction/run <RESULTS_DIR> <GPU_ID>
+conda activate Brain2Brain
+
+# run training code
+python train_transformation.py 0 4 0 1 1 0 0 0 700 6400 1200 0
+
 ```
-Note that `<SOMETHING>` should be replaced in the above example, based on the specific paths and GPU you want to use.
+Once done, the weigths of the trained transforamtion can be found at the 'data/Transformations' folder.
 
-Once done (in our settings it takes ~1.5 hours), the result can be found in the provided `<RESULTS_DIR>`.
-The results directory will contain:
-* Weights for trained encoder and decoder (in `<RESULTS_DIR>/XX.hdf5`).
-* Image reconstructions (in `<RESULTS_DIR>/encdec_stage_1_type_0_repeat_0/test_avg`).
-* Classification results:
-    - CSV (in `<RESULTS_DIR>/demo_class_acc.csv`).
-    - Numpy pickled array (in `<RESULTS_DIR>/demo_class_acc.npz`).
-    - Plot (in `<RESULTS_DIR>/classification_results_graph.png`).
+## Demo - Train GOD encoder using another subject from NSD as a teacher
 
-## Instructions for use (not in demo mode)
-**Note:** this is a demo version and not all options are supported!
+This Demo will train encoder of subject 4 from the GOD dataset using subject 1 from the NSD dataset as a teacher. We will train the encoder only with 300 examples in subject 4 in GOD.
+ To run the demo, run the following commands in **bash** (other shells requires some modification to the following scripts):
+```bash
+# go to the project directory
+cd <PROJECT_DIR>
+# activate conda environment
+conda activate Brain2Brain
 
-1. The full version, will need to have the following under data directory:
-    1. `data/train_images` - 1.2M ImageNet training set images (divided into folders by class).
-    2. `data/val` - 50k ImageNet validation set images.
-    3. `data/Vim1_Files` - Vim-1 dataset (images and fMRI).
-2. With the datasets in place, the process for reproducing results is quite similar to the demo. Exceptions:
-    1. Run command has more arguments (for ablation studies and choice of subject).
-    2. Includes a code for _n_-way identification (Perceptual-Similarity based) that will run under the same command.
-3. Code for vim-1 will also be published and will have similar structure and instructions.
+# run training code
+python train_encoder.py 0 4 0 1 1 0 300 0
+```
+Once done, the weigths of the trained transforamtion can be found at the 'data/Transformations' folder.
+
+
+### Datasets
+- This code borrows from [Perceptual Similarity Metric](https://github.com/richzhang/PerceptualSimilarity).
+- The original datasets behind the released data derivatives are ([fMRI on ImageNet](https://openneuro.org/datasets/ds001246/versions/1.0.1), and [ILSVRC](https://image-net.org/challenges/LSVRC/index.php)).
+
+## How to train a model
+Explanation
 
 
 ##
@@ -78,14 +98,3 @@ The results directory will contain:
 - This code borrows from [Perceptual Similarity Metric](https://github.com/richzhang/PerceptualSimilarity).
 - The original datasets behind the released data derivatives are ([fMRI on ImageNet](https://openneuro.org/datasets/ds001246/versions/1.0.1), and [ILSVRC](https://image-net.org/challenges/LSVRC/index.php)).
 ##
-### Citation
-If you find this repository useful, please consider giving a star ⭐️ and citation:
-```
-@article{Gaziv2022,
-	title = {{Self-Supervised Natural Image Reconstruction and Large-Scale Semantic Classification from Brain Activity}},
-	author = {Gaziv, Guy and Beliy, Roman and Granot, Niv and Hoogi, Assaf and Strappini, Francesca and Golan, Tal and Irani, Michal},
-	journal = {NeuroImage},
-	doi = {10.1016/J.NEUROIMAGE.2022.119121},
-	year = {2022}
-}
-```
