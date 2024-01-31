@@ -35,38 +35,10 @@ Depending on your internet connection, this may take about 30 minutes.
 Run the following commands in **bash** (other shells requires some modification to the following scripts):
 ```bash
 # Function to extract file name from Dropbox URL
-get_dropbox_filename() {
-    local url=$1
-    echo "$url" | grep -o -E '[^/]+$'
-}
-# download the data for the demo
-cd data/Processed_data/NSD
-url = https://www.dropbox.com/scl/fi/vk3v1l8agev8te57h9zsm/NSD_data.zip?rlkey=mpql54xgqmcwbgxxfvz7lca0q&dl=0
-filename=$(get_dropbox_filename "$url")
-wget --content-disposition "$url"
-tar -xvf "$filename"
-cd ..
-cd GOD
-url = https://www.dropbox.com/scl/fi/ycofcmdl38uie9uqpayql/GOD_data.zip?rlkey=y9pdc7ycx3650e03wzjwybwbc&dl=0
-filename=$(get_dropbox_filename "$url")
-wget --content-disposition "$url"
-tar -xvf "$filename"
+cd data
+wget https://www.dropbox.com/scl/fi/lgbjcynh3418qe03ry4gl/Demo_data.zip?rlkey=bn09i86wqs8q20f3enrfum6rx&dl=0
+unzip Demo_data.zip?rlkey=bn09i86wqs8q20f3enrfum6rx&dl=0
 
-# download trained models for the demo
-cd ..
-cd ..
-cd NSD_encoders
-url =  https://www.dropbox.com/scl/fi/wdsg7gw0iz4lwaio0m76g/NSD_encoders.zip?rlkey=kzkphed4uxt200wipbnsjyplv&dl=0
-filename=$(get_dropbox_filename "$url")
-wget --content-disposition "$url"
-tar -xvf "$filename"
-
-cd ..
-cd GOD_encoders
-url =  https://www.dropbox.com/scl/fi/qmat7iq4opfvsojwoz1s4/GOD_encoders.zip?rlkey=9ny4djmpzxnm17cdfz3igmjf0&dl=0
-filename=$(get_dropbox_filename "$url")
-wget --content-disposition "$url"
-tar -xvf "$filename"
 ```
 
 
