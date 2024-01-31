@@ -114,7 +114,8 @@ if __name__ == '__main__':
     print("fitting...")
     model.fit_generator(loader_train, validation_data=loader_test, epochs=epochs, verbose=0,
                         callbacks=callback_list, workers=1, use_multiprocessing=True)  # epochs
-
+    print('Correlation Results of the Transforatmion on the Test Set:')
+    test_model_and_print(encoder_model_1,test_FMRI_1_s,test_FMRI_2_s, bacth_size=16, num_batches=30)
     #save models
     print("saving weights...")
     if(encoder_transf_run == 1):
