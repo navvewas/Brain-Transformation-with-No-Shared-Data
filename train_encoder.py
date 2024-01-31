@@ -85,12 +85,12 @@ if __name__ == '__main__':
     else:
         subject_2_cur = subject_2
     # Define callbacks for evaluation and lr
-    if (encoder_transf_run == 0):
-        callback_list.append(corr_metric_callback(train_data=[train_images_1, train_FMRI_1],
-                                                test_data=[test_images_1, test_FMRI_1],
-                                                encoder_model=encoder_model_1, tensorboard_cb=callback,
-                                                num_voxels=NUM_VOXELS_1,
-                                                name='encoder_S0' + str(subject_1)))
+    # if (encoder_transf_run == 0):
+    #     callback_list.append(corr_metric_callback(train_data=[train_images_1, train_FMRI_1],
+    #                                             test_data=[test_images_1, test_FMRI_1],
+    #                                             encoder_model=encoder_model_1, tensorboard_cb=callback,
+    #                                             num_voxels=NUM_VOXELS_1,
+    #                                             name='encoder_S0' + str(subject_1)))
 
     reduce_lr = LearningRateScheduler(step_decay)
     callback_list.append(reduce_lr)
