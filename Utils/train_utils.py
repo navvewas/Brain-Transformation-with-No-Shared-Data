@@ -3,6 +3,7 @@ from Utils.load_utils_Kami_new import get_data_newK
 from Utils.NSD_load_utils import *
 from Models.encoder_model import encoder_param as encoder_param_old
 from Models.encoder_model_NSD import *
+import scipy.stats as stat
 from Utils.layers_utils import get_subjects_corr_map
 from Models.Augm_Model import subject_transf_network, subject_transf_network_lc
 import warnings
@@ -464,5 +465,25 @@ def get_transforamtions(encoder_transf_run,train_FMRI_1_s,train_FMRI_2_s,num_n_1
         transf_net_2_to_1 = subject_transf_network(NUM_VOXELS_2, NUM_VOXELS_1, name='subject_transf_2_to_1',
                                                 param_l1=transf_l1_reg, param_l2=l2_reg_2)
     return transf_net_1_to_2,transf_net_2_to_1
+
+
+def test_model_and_print(model,x,y, bacth_size=16, num_batches=30):
+    num_batches = x.shape[0]//bacth_size + 1
+    y_predict = np.zeros([0,y.shape[1]])
+    for i in range(num_batches):
+        inputs = x[bacth_size*i:bacth_size*(i+1)]
+        pred = model.predict(inputs)
+        y_predict = np.concatenate((y_predict, pred), axis=0)
+    corr = np.zeros([y.shape[1]])
+    for i in range(y.shape[1]):
+        corr[i] = stat.pearsonr(y[:, i], y_predict[:, i])[0]
+    corr = np.nan_to_num(corr)
+    print('test corr median = ' +str(np.mean(corr)))
+    print('test corr mean = ' +str(np.median(corr)))
+    print('test corr 75 = ' +str(np.percentile(corr,75)))
+    print('test corr 90 = ' +str(np.percentile(corr,90)))
+    
+
+
 
 
