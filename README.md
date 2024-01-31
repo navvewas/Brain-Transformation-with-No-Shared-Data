@@ -36,8 +36,8 @@ Run the following commands in **bash** (other shells requires some modification 
 ```bash
 # Function to extract file name from Dropbox URL
 cd data
-wget https://www.dropbox.com/scl/fi/lgbjcynh3418qe03ry4gl/Demo_data.zip?rlkey=bn09i86wqs8q20f3enrfum6rx&dl=0
-unzip Demo_data.zip?rlkey=bn09i86wqs8q20f3enrfum6rx&dl=0
+wget https://www.dropbox.com/scl/fi/plprfgnc5vdiwcp6zww7u/Demo_data.zip?rlkey=sqm73wigta98a2cgfyiptmrss&dl=0
+unzip Demo_data.zip?rlkey=sqm73wigta98a2cgfyiptmrss&dl=0
 
 ```
 
