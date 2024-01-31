@@ -34,26 +34,39 @@ Depending on your internet connection, this may take about 30 minutes.
 ## Downaloading the data for the demo
 Run the following commands in **bash** (other shells requires some modification to the following scripts):
 ```bash
+# Function to extract file name from Dropbox URL
+get_dropbox_filename() {
+    local url=$1
+    echo "$url" | grep -o -E '[^/]+$'
+}
 # download the data for the demo
 cd data/Processed_data/NSD
-wget https://www.dropbox.com/scl/fi/vk3v1l8agev8te57h9zsm/NSD_data.zip?rlkey=mpql54xgqmcwbgxxfvz7lca0q&dl=0
-tar -xvf NSD.tar.gz
+url = https://www.dropbox.com/scl/fi/vk3v1l8agev8te57h9zsm/NSD_data.zip?rlkey=mpql54xgqmcwbgxxfvz7lca0q&dl=0
+filename=$(get_dropbox_filename "$url")
+wget --content-disposition "$url"
+tar -xvf "$filename"
 cd ..
 cd GOD
-wget https://www.dropbox.com/scl/fi/ycofcmdl38uie9uqpayql/GOD_data.zip?rlkey=y9pdc7ycx3650e03wzjwybwbc&dl=0
-tar -xvf GOD.tar.gz
+url = https://www.dropbox.com/scl/fi/ycofcmdl38uie9uqpayql/GOD_data.zip?rlkey=y9pdc7ycx3650e03wzjwybwbc&dl=0
+filename=$(get_dropbox_filename "$url")
+wget --content-disposition "$url"
+tar -xvf "$filename"
 
 # download trained models for the demo
 cd ..
 cd ..
 cd NSD_encoders
-wget https://www.dropbox.com/scl/fi/wdsg7gw0iz4lwaio0m76g/NSD_encoders.zip?rlkey=kzkphed4uxt200wipbnsjyplv&dl=0
-tar -xvf NSD_encoders.tar.gz
+url =  https://www.dropbox.com/scl/fi/wdsg7gw0iz4lwaio0m76g/NSD_encoders.zip?rlkey=kzkphed4uxt200wipbnsjyplv&dl=0
+filename=$(get_dropbox_filename "$url")
+wget --content-disposition "$url"
+tar -xvf "$filename"
 
 cd ..
 cd GOD_encoders
-wget https://www.dropbox.com/scl/fi/qmat7iq4opfvsojwoz1s4/GOD_encoders.zip?rlkey=9ny4djmpzxnm17cdfz3igmjf0&dl=0
-tar -xvf GOD_encoders.tar.gz
+url =  https://www.dropbox.com/scl/fi/qmat7iq4opfvsojwoz1s4/GOD_encoders.zip?rlkey=9ny4djmpzxnm17cdfz3igmjf0&dl=0
+filename=$(get_dropbox_filename "$url")
+wget --content-disposition "$url"
+tar -xvf "$filename"
 ```
 
 
