@@ -99,18 +99,18 @@ if __name__ == '__main__':
     else:
         subject_2_cur = subject_2
     # Define callbacks for evaluation and lr
-    callback_list.append(corr_metric_callback(train_data=[train_FMRI_1_s, train_FMRI_2_s],
-                                            test_data=[test_FMRI_1_s, test_FMRI_2_s], tensorboard_cb=callback, \
-                                            encoder_model=transf_net_1_to_2,
-                                            name='transformation_s' + str(
-                                                subject_1) + extra_subj_1 + '_to_s' + \
-                                                str(subject_2_cur) + extra_subj_2))
-    callback_list.append(corr_metric_callback(train_data=[train_FMRI_2_s, train_FMRI_1_s],
-                                            test_data=[test_FMRI_2_s, test_FMRI_1_s], tensorboard_cb=callback, \
-                                            encoder_model=transf_net_2_to_1,
-                                            name='transformation_s' + str(
-                                                subject_2_cur) + extra_subj_2 + '_to_s' + \
-                                                str(subject_1) + extra_subj_1))
+    # callback_list.append(corr_metric_callback(train_data=[train_FMRI_1_s, train_FMRI_2_s],
+    #                                         test_data=[test_FMRI_1_s, test_FMRI_2_s], tensorboard_cb=callback, \
+    #                                         encoder_model=transf_net_1_to_2,
+    #                                         name='transformation_s' + str(
+    #                                             subject_1) + extra_subj_1 + '_to_s' + \
+    #                                             str(subject_2_cur) + extra_subj_2))
+    # callback_list.append(corr_metric_callback(train_data=[train_FMRI_2_s, train_FMRI_1_s],
+    #                                         test_data=[test_FMRI_2_s, test_FMRI_1_s], tensorboard_cb=callback, \
+    #                                         encoder_model=transf_net_2_to_1,
+    #                                         name='transformation_s' + str(
+    #                                             subject_2_cur) + extra_subj_2 + '_to_s' + \
+    #                                             str(subject_1) + extra_subj_1))
 
     reduce_lr = LearningRateScheduler(step_decay)
     callback_list.append(reduce_lr)
