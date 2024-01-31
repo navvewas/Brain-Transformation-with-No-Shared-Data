@@ -28,23 +28,23 @@ git clone https://github.com/navvewas/Brain-Transformation-with-No-Shared-Data.g
 
 # download the data for the demo
 cd data/Processed_data/NSD
-wget aaaaa
+wget https://www.dropbox.com/scl/fi/vk3v1l8agev8te57h9zsm/NSD_data.zip?rlkey=mpql54xgqmcwbgxxfvz7lca0q&dl=0
 tar -xvf NSD.tar.gz
 cd ..
 cd GOD
-wget aaaaa
+wget https://www.dropbox.com/scl/fi/ycofcmdl38uie9uqpayql/GOD_data.zip?rlkey=y9pdc7ycx3650e03wzjwybwbc&dl=0
 tar -xvf GOD.tar.gz
 
 # download trained models for the demo
 cd ..
 cd ..
 cd NSD_encoders
-wget aaaaa
+wget https://www.dropbox.com/scl/fi/wdsg7gw0iz4lwaio0m76g/NSD_encoders.zip?rlkey=kzkphed4uxt200wipbnsjyplv&dl=0
 tar -xvf NSD_encoders.tar.gz
 
 cd ..
 cd GOD_encoders
-wget aaaaa
+wget https://www.dropbox.com/scl/fi/qmat7iq4opfvsojwoz1s4/GOD_encoders.zip?rlkey=9ny4djmpzxnm17cdfz3igmjf0&dl=0
 tar -xvf GOD_encoders.tar.gz
 
 # install conda env - assumes conda is already installed
