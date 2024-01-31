@@ -55,6 +55,7 @@ conda activate Brain2Brain
 python train_transformation.py 0 4 0 1 1 0 0 0 700 6400 1200 0
 
 ```
+The script print the mean, median,75 precentile and 90 precntile of per voxel correlation between the predicted transform fMRI from subject 4 in GOD dataset and the measured fMRI of subject 1 from the NSD.
 Once done, the weigths of the trained transforamtion can be found at the 'data/Transformations' folder.
 
 ## Demo - Train GOD encoder using another subject from NSD as a teacher
@@ -70,5 +71,6 @@ conda activate Brain2Brain
 # run training code
 python train_encoder.py 0 4 0 1 1 0 300 0
 ```
+The script print the mean, median,75 precentile and 90 precntile of per voxel correlation between the predicted encoded fMRI from an image and the measured fMRI of subject 4 from the GOD dataset.
 Once done, the weigths of the trained encoder can be found at the 'data/GOD_encoders' folder.
 
